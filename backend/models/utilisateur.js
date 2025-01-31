@@ -12,3 +12,4 @@ const UtilisateurSchema = new mongoose.Schema({
 });
 
 const Utilisateur = mongoose.model('Utilisateur', UtilisateurSchema);
+module.exports = Utilisateur;

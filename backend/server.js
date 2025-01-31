@@ -2,14 +2,14 @@ const express=require('express');
 require('./config/connect');
 const app=express();
 const bcrypt = require("bcryptjs");
-
+const tacheRouter = require("./routes/tache");
 
 app.use(express.json());
 const cors=require('cors');
 app.use(cors());
 const utilisateurrouter=require('./routes/utilisateur');  
 app.use('/utilisateur',utilisateurrouter); 
-
+app.use("/tache", tacheRouter);
 
 app.post("/chat", (req, res) => {
     const { message } = req.body;
