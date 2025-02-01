@@ -32,8 +32,8 @@ router.post('/login', async (req, res) => {
             let role = 'user'; // Par défaut, rôle utilisateur
             if (user.isAdmin) {
                 role = 'admin';
-            } else if (user.isCovoitureur) {
-                role = 'covoitureur';
+            } else if (user.isemployee) {
+                role = 'isemployee';
             }
 
             const payload = {
@@ -51,7 +51,7 @@ router.post('/login', async (req, res) => {
                 isAdmin: user.isAdmin,
                 name : user.name,
                 lastname : user.lastname,
-                isCovoitureur: user.isCovoitureur
+                isemployee: user.isemployee
             });        }
     }
 });

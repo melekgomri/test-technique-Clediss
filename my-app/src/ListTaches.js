@@ -2,27 +2,27 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const ListTaches = ({ utilisateurId }) => {
+const ListTaches = () => {
     const [taches, setTaches] = useState([]);
 
     useEffect(() => {
         const fetchTaches = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/tache/user/${utilisateurId}`);
+                const response = await axios.get("http://localhost:3000/tache/getall");
                 setTaches(response.data);
             } catch (error) {
-                console.error("Error fetching tasks:", error);
+                console.error("Erreur lors de la récupération des tâches:", error);
             }
         };
         fetchTaches();
-    }, [utilisateurId]);
+    }, []);
 
     const handleDelete = async (tacheId) => {
         try {
             await axios.delete(`http://localhost:3000/tache/delete/${tacheId}`);
             setTaches(taches.filter(tache => tache._id !== tacheId));
         } catch (error) {
-            console.error("Error deleting task:", error);
+            console.error("Erreur lors de la suppression de la tâche:", error);
         }
     };
 
