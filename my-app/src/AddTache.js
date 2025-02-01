@@ -37,48 +37,58 @@ const AddTache = () => {
     };
 
     return (
-        <div className="container">
-            <div className="header">
+        <div>
+            {/* ✅ Header avec bouton Logout bien placé */}
+            <header className="header">
                 <h2>Ajouter une tâche</h2>
                 <button className="logout-btn" onClick={handleLogout}>Déconnexion</button>
+            </header>
+
+            {/* ✅ Contenu de la page */}
+            <div className="container">
+                <form onSubmit={handleSubmit}>
+                    <label>Titre:</label>
+                    <input
+                        type="text"
+                        value={titre}
+                        onChange={(e) => setTitre(e.target.value)}
+                        required
+                    />
+
+                    <label>Description:</label>
+                    <textarea
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        required
+                    />
+
+                    <label>Date de début:</label>
+                    <input
+                        type="date"
+                        value={dateDebut}
+                        onChange={(e) => setDateDebut(e.target.value)}
+                        required
+                    />
+
+                    <label>Date de fin:</label>
+                    <input
+                        type="date"
+                        value={dateFin}
+                        onChange={(e) => setDateFin(e.target.value)}
+                        required
+                    />
+
+                    <label>ID Utilisateur:</label>
+                    <input
+                        type="text"
+                        value={utilisateurId}
+                        onChange={(e) => setUtilisateurId(e.target.value)}
+                        required
+                    />
+
+                    <button type="submit" className="add-btn">Ajouter</button>
+                </form>
             </div>
-            <form onSubmit={handleSubmit}>
-                <label>Titre:</label>
-                <input
-                    type="text"
-                    value={titre}
-                    onChange={(e) => setTitre(e.target.value)}
-                />
-
-                <label>Description:</label>
-                <textarea
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-
-                <label>Date de début:</label>
-                <input
-                    type="date"
-                    value={dateDebut}
-                    onChange={(e) => setDateDebut(e.target.value)}
-                />
-
-                <label>Date de fin:</label>
-                <input
-                    type="date"
-                    value={dateFin}
-                    onChange={(e) => setDateFin(e.target.value)}
-                />
-
-                <label>ID Utilisateur:</label>
-                <input
-                    type="text"
-                    value={utilisateurId}
-                    onChange={(e) => setUtilisateurId(e.target.value)}
-                />
-
-                <button type="submit">Ajouter</button>
-            </form>
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // ✅ Import du hook de navigation
 import './Login.css';
 
 const Login = () => {
@@ -7,6 +8,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate(); // ✅ Initialisation de useNavigate
 
   const handleChange = (e) => {
     setCredentials({
@@ -20,7 +23,8 @@ const Login = () => {
     try {
       const response = await axios.post("http://localhost:3000/utilisateur/login", credentials);
       console.log("Login successful:", response.data);
-      localStorage.setItem("token", response.data.token);  // Save JWT token
+      localStorage.setItem("token", response.data.token);  // ✅ Stockage du token
+      navigate("/add");  // ✅ Redirection après succès
     } catch (error) {
       console.error("Login failed:", error);
     }
@@ -36,6 +40,7 @@ const Login = () => {
           value={credentials.email}
           onChange={handleChange}
           placeholder="Email"
+          required
         />
         <input
           type="password"
@@ -43,6 +48,7 @@ const Login = () => {
           value={credentials.password}
           onChange={handleChange}
           placeholder="Password"
+          required
         />
         <button type="submit">Login</button>
       </form>
